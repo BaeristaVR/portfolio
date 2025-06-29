@@ -1,0 +1,1265 @@
+  .highlight {
+    color: #0fa3a3; 
+  }
+
+  * {
+    cursor: url('portaFilter.png') 16 16, auto;
+    box-sizing: border-box
+  }
+
+  html {
+   scroll-padding-top: 100px; /* Adjust this based on your header height */
+    scroll-behavior: smooth;  /* pag mag scroll */
+  }
+
+  canvas {
+    display: none;
+  }
+
+  input, textarea, .allow-select {    /* can copy input text */
+    user-select: text !important;
+  }
+
+
+  body {
+    margin: 0;
+    background-color: #030e16;
+    color: white;
+    overflow-x: hidden;
+    cursor: url('portaFilter.png') 4 4, auto;
+
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px;          /* height of the footer */
+    letter-spacing: 1.5px;
+
+    user-select: none;              /*to avoind copying text in page */
+    -webkit-user-select: none;      /* Safari */
+    -moz-user-select: none;         /* Firefox */
+    -ms-user-select: none;          /* IE/Edge */
+  }
+
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+    padding-top: 0px;      /* if your header is 100–120px tall */
+    padding-bottom: 100px; /* optional breathing space */
+  }
+
+    footer {
+    background-color: #030b11;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    margin-top: 0;
+    }
+
+  header {
+    background-color: #051019;
+    color: #0ef;
+    text-align: left;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 2rem; 
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(5, 16, 25, 0.85);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    overflow-y: hidden; 
+    overflow: visible;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    padding-right: 1.2in;   /* space ng button X */
+    margin: 10px;
+    z-index: 1;            /* for dropdown menu */
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .header-left {       /* sa logo */
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+  }
+
+  .btn {                   /* btn for Download CV */
+    display: inline-block;
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    background-color: #222;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+   /* animation: pulseGlow 2s infinite;*/
+    box-shadow: 0 0 10px rgba(0, 239, 255, 0.2);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: url('portaFilter.png') 4 4,auto !important;
+  }
+  
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(0, 239, 255, 0.4) 10%, transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(0, 239, 255, 0.6), 0 0 40px rgba(0, 239, 255, 0.4);
+    color: #000;
+    background-color: #0ef;
+    text-shadow: 0 0 10px #0ef, 0 0 20px #0ef;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn:hover::before {
+    opacity: 1;
+  }
+  
+  .bean-icon,
+  .open-icon,
+  .close-icon {
+    color: red;
+    width: 30px;
+    height:auto;
+    object-fit: contain;
+    transition: 0.3s ease;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    will-change: transform;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: url('portaFilter.png') 16 16, auto;
+  }
+
+  .bean-icon:hover,
+  .open-icon:hover,
+  .close-icon:hover {
+    transform: scale(1.2);       /* Zoom-in effect */
+    background-color: transparent;
+    background: none;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .section {      
+    opacity: 0;
+    transform: rotateY(40deg) translateY(20px);
+    transform-origin: center;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    min-height: 400px;
+    margin: auto;
+    background-color: #081b29;
+    color: #0fa3a3;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    scroll-margin-top: 100px;
+  }
+
+  .section.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  h2 {
+    color: #0ef;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  strong {       /* project strong text */
+    letter-spacing: 0.8px; 
+  }
+
+  .hero-text {
+    margin-left: 0; /* or -2rem for more shift */
+  }
+
+  .hero-image-container {
+    margin-top: 2rem;
+  }
+
+  .hero-text .btn {
+    margin-top: 1rem;
+  }
+
+  #about.section {
+    padding: 1.5rem 1rem;
+    height: 520px;
+  }
+
+  #about h2 {
+    font-size: 2rem;
+    font-family: 'CoffeeSoda', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: row; /* horizontal content */
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;        /* space between the image and text */
+    flex-wrap: wrap;
+    justify-content: center; /* Try 'center' or even 'space-evenly' */
+    padding-left: 3rem;
+  }
+
+  .hero-profile {       /* about me PAGE */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0ef;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 2;
+    position: relative;
+    margin-left: 1.5rem;
+    margin-top: 15px;
+  }
+
+  /* landing PAGE */
+  .profile-pic {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0ef;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-top: 50px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .about-profile-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0ef;
+  }
+
+  .profile-img {
+    margin-right: 15px; /* Reduce this */
+  }
+
+  .glow-wrapper {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0; /* ← pushes it to the right */
+    position: relative;
+  }
+
+  .about-text {
+    max-width: 650px;
+    padding: 1.5px;
+    letter-spacing: 0.5px;
+  }
+
+  .about-text p {
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .typed-container {
+    display: inline-block;
+    height: 30px; 
+    overflow: visible;
+    vertical-align: middle;
+  }
+  
+  .text {
+    line-height: 2px;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #a96840;
+  }
+
+  .hero h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000; 
+  }
+  
+  .menu-toggle {
+    display: block; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    cursor: url('portaFilter.png') 4 4, auto;
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 200px;
+        height: 200px;
+
+        padding-top: 3rem;     /* dropdown menu */
+        gap: 2rem;
+        margin-bottom: 8rem
+      }
+    }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 1rem;
+      border-radius: 10px;
+      z-index: 9999;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .home-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+
+  .nav-links {
+    display: none;         /* naka hide ung nav bar menu */
+    flex-direction: row;
+    background-color: #051019;
+    justify-content: flex-end;
+    background: none;      /* remove padding*/
+    border: none;
+
+    gap: 10px;             /* dropdown nav link */
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+
+    flex-direction: row;
+    top: 30%;
+    left: 53%;               /* Space ng nav sa button X */
+    text-align: center;
+    white-space: nowrap;    /* to make the letter one line */
+    scroll-padding: smooth;
+    position: center;
+  }
+
+  .nav-links a {        /* Style for the navigation links */
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 15px;
+    margin-right: 5px;
+    display: inline-block;    /* same level of text*/
+    transition: all 0.3s ease;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: url('portaFilter.png') 4 4, auto;
+  }
+
+  .nav-links a:hover,      /* Hover effect */
+  .nav-links a:focus {
+    color: #0ef;
+    background-color: rgba(0, 239, 255, 0.2);
+    text-shadow: 0 0 8px #0ef, 0 0 20px #0ef, 0 0 30px #0ef, 0 0 40px #0ef;
+
+    background: none;
+    outline: none;
+    border: none;
+    transform: scale(1.2);
+  }
+
+    nav a {
+    color: #0ef;
+    margin: 0 1px;
+    text-decoration: none;
+  }
+
+  nav {
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: none;
+  }
+
+  .nav-links a {
+    padding: 4px 8px;
+    margin: 0 8px;
+    border-radius: 8px; /* makes hover glow more contained */
+  }
+
+  .nav-links.active { 
+    display: flex;       /* show when toggled */
+  }
+
+  .music-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    margin-left: 10px;       /* button X */
+
+    position: absolute;
+    top: 50%;
+    right: 5rem; 
+    transform: translateY(-50%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    outline: none;
+  }
+
+  .music-toggle:hover {
+    transform: translateY(-50%) scale(1.2);
+    text-shadow: 0 0 6px #0ef, 0 0 12px #0ef;
+  }
+
+  .button-group {
+    display: flex;
+    align-items: center; /* vertically centers children */
+    gap: 10px;
+    cursor: url('portaFilter.png') 4 4, auto;
+  }
+
+  .dropdown {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown-toggle {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;             /* below the nav */
+    left: 0;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    z-index: 99999;         /* for dropdown menu */
+    white-space: nowrap;
+    margin: 0;
+    float: left;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+
+    box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
+    border: 1px solid rgba(0, 239, 255, 0.4);
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 0;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: transparent;
+    text-align: start;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .dropdown-toggle:hover {
+    color: #0ef;
+    background-color: rgba(0, 239, 255, 0.2);
+    text-shadow: 0 0 8px #0ef, 0 0 20px #0ef, 0 0 30px #0ef, 0 0 40px #0ef;
+    transform: scale(1.2);
+    background: none;
+  }
+
+    .dropdown a:hover,      /* Hover effect */
+    .dropdown a:focus {
+    color: #0ef;
+    background-color: rgba(0, 239, 255, 0.2);
+    text-shadow: 0 0 8px #0ef, 0 0 20px #0ef, 0 0 30px #0ef, 0 0 40px #0ef; 
+    background: none;
+    outline: none;
+    border: none;
+    transform: scale(1.2);
+  }
+
+  .dropdown-menu a:hover {
+    transform: scale(1.2);
+    color: #0ef;
+    text-shadow: 0 0 8px #0ef, 0 0 20px #0ef;
+  }
+
+    .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #081b29;
+    color: white;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    justify-content: center;
+    margin-bottom: 22rem;         /* for next about me */
+    letter-spacing: 1px;
+  }
+
+  .project-text h1 {            /* PROJECT H1 */
+    font-size: 1.7rem;
+    margin-bottom: 0;
+    font-family: 'CoffeeSoda', sans-serif;
+    line-height: 1.5;
+    color: #0ef;;
+    letter-spacing: 1.5px;
+  }
+
+   .project-text h2 {
+    font-size: 1.5rem;
+    color:#a96840;
+    letter-spacing: 1.2px;
+   }
+
+   .project-text p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .hero h2 {            /* landing page name */
+    font-size: 4rem;
+    margin-bottom: 0;
+    font-family: 'CoffeeSoda', sans-serif;
+    line-height: 1.5;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+
+  .home-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items to edges */
+    align-items: center;
+    padding: 2rem 4rem;
+    flex-wrap: wrap;
+    gap: 3rem;
+   }
+
+  .home-content {
+    display: flex;
+    flex-direction: row; /* This makes text on left, image on right */
+    align-items: center;  
+    justify-content: center;
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+
+  .home-container .btn {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: #0ef;
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 30px; /* ⬅ Pushes the button down */
+  }
+  
+  .hero-text {
+    margin: 0;
+  }
+
+  @font-face {
+    font-family: 'CoffeeSoda';
+    src: url('CoffeeSoda.ttf') format('truetype');
+    font-display: swap;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Animations */
+  .bean {
+    color: red;
+    position: fixed;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    background-image: url('coffeeBean.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fall 5s linear infinite;
+    left: calc(100vw * var(--random-x));
+    z-index: -1;
+  }
+
+  .bean-icon {
+    width: 40px; /* Try 40–60px depending on how bold you want it */
+  }
+
+  .open-icon {
+    filter: drop-shadow(0 0 8px #0ef) drop-shadow(0 0 12px #0ef);
+    animation: glowBean 1.5s infinite alternate;
+  }
+  
+  /* Glowing animation */
+  @keyframes glowBean {
+    0% {
+      filter: drop-shadow(0 0 5px #0ef) drop-shadow(0 0 8px #0ef);
+    }
+    100% {
+      filter: drop-shadow(0 0 15px #0ef) drop-shadow(0 0 25px #0ef);
+    }
+  }
+  
+  /* Optional: Hover effect */
+  .menu-toggle:hover .open-icon {
+    transform: scale(1.1);
+  }
+
+  .close-icon {
+    filter: drop-shadow(0 0 8px red) drop-shadow(0 0 12px red); /* Adds red glowing effect */
+    animation: glowRed 1.5s infinite alternate; /* Adds a pulsing glow effect */
+    width: 40px;
+  }
+  
+  /* Glowing animation */
+  @keyframes glowRed {
+    0% {
+      filter: drop-shadow(0 0 5px red) drop-shadow(0 0 8px red);
+    }
+    100% {
+      filter: drop-shadow(0 0 15px red) drop-shadow(0 0 25px red);
+    }
+  }
+
+  .section.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section:hover {
+    transform: translateY(-5px);
+  }
+  
+  @keyframes pulseGlow {       /* btn hover more about me */
+    0% {
+      box-shadow: 0 0 8px rgba(0, 239, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 18px rgba(0, 239, 255, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 8px rgba(0, 239, 255, 0.2);
+    }
+  }
+
+  .glow-wrapper::before {       /* color sa profile picture */
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
+    background: conic-gradient(
+      from 0deg,
+      #0ef,
+      #8847d2,
+      #0ac9da
+    );
+    border-radius: 50%;
+    animation: rotateGlow 4s linear infinite;
+    filter: blur(20px);
+    z-index: 1;
+  }
+  
+  @keyframes rotateGlow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .glass {
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .section + .section {
+    margin-top: 22rem;
+    margin-bottom: 22rem;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    filter: blur(8px);
+    transition: opacity 1.5s ease, transform 1.5s ease, filter 1.5s ease;
+    transition: all 1.5s ease;
+    transition-delay: 0.2s;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 12px rgba(0, 239, 255, 0.2));
+  }
+
+  .fade-in.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .about-projects {        /* Project container */
+    display: flex;
+    align-items: flex-start; 
+    gap: 0px;
+   /* padding: 150px; */
+  }
+
+  .project-text {
+    flex: 1 1 55%;
+  }
+
+  .project-image {
+    flex: 1 1 40%;
+    text-align: center;
+    margin-top: 40px;            /* keep this if you want the image a bit lower */
+  }
+
+  .project-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    margin-top: 20px;            /* Adjust this value to push the image down */
+  }
+
+  .project-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;           /* optional: prevents accidental spillage */
+    justify-content: space-between;
+    padding-top: 0px;
+    padding-bottom: 2rem;
+  }
+
+  .glass {
+    padding: 2rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .project-section {
+    margin-bottom: 4rem;       /* or increase to 5rem, 6rem, etc. */
+    scroll-padding-top: 110px;
+  }
+
+  .skill-bar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+    width:100%;
+  }
+
+  .skills-title {
+    font-family: 'CoffeeSoda', cursive;
+    font-size: 2.5rem;
+    color: #0ef;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 6px rgba(181, 23, 139, 0.4);
+    letter-spacing: 1px;
+  }
+
+  .skill-bar p {
+    color: #0fa3a3;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0;
+    margin-bottom: 0.3rem;
+  }
+
+  .bar {               /* Progress BAR */
+    width:80%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(0, 239, 255, 0.2);
+    margin-bottom: 0.5rem;
+  }
+
+  .fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0ef, #1dd1c8);
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(0, 239, 255, 0.4);
+    display: block;
+  }
+
+  @keyframes growBar {
+    from { width: 0; }
+    to { width: inherit; }       /* This works if inline styles like width: 95% exist */
+  }
+
+  .skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+  }
+
+  .skills-set {
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .skills-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* or flex-start for left-aligned bars */
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    align-items: center;
+    width: 100%;
+    /* max-width: 350px; */
+  }
+
+  .skills-set:last-child {
+    flex: 2;
+    margin-top: 0;         /* remove if there's extra */
+    padding-top: 0;
+    width: 30%;
+  }
+
+  .skills-column:nth-child(2) {
+    flex: 1;
+    text-align: left;       /* or right, depending on your design */
+  }
+
+  #skills .section {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  #softSkillsChart {
+    height: auto;
+    max-height: 400px;
+    margin-top: 0.1rem;
+  }
+
+  #softSkillsChartContainer {
+    padding: 6rem;             /* adjust as needed */
+    box-sizing: border-box;
+  }
+
+  #softSkillsChart:hover {
+    transform: scale(1s);
+    transition: transform 0.3s ease;
+  }
+
+  .skills-column h3 {
+    margin-bottom: 1rem;      /* Adds space between title and chart */
+    text-align: center;
+  }
+
+  .skills-heading.tech,
+  .skills-heading.soft {
+    color: #a96840;
+    font-family: 'CoffeeSoda', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: block;
+    letter-spacing: 1px;
+  }
+
+  /* UI DESIGN */
+  .carousel-container {
+    position: relative;
+    width: 100%; 
+    overflow: visible;  
+    overflow-y: visible;
+    padding: 0 0;
+    scroll-margin-top: 140px;
+  }
+
+  .carousel-track {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 3rem;
+    -ms-overflow-style: none;       /* hide scrollbar for IE and Edge */
+    scrollbar-width: none;          /* Firefox */
+    overflow-x: auto;
+    overflow-Y: hidden;
+    padding: 12rem 10rem;           /* padding ng image pag mag zoom */
+    justify-content: flex-start;    /* para mauna ing first image */
+    scroll-padding-right: 2rem;
+
+    transform-style: preserve-3d;
+    perspective: 200px;
+    margin-bottom: 1rem;            /* pag zoom ng image before the dots */
+    padding-bottom: 6rem;           /* pag zoom ng image before the dots */
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;                 /* Chrome */
+  }
+
+  .carousel-slide {
+    flex: 0 0 40%;
+    scroll-snap-align: start;
+    text-align: center;
+    transition: transform 0.8s ease, opacity 0.8s ease;     /* transition: transform 0.3s ease; */
+    position: relative;
+    z-index: 1;
+    scroll-snap-align: center;
+    overflow: visible;
+  }
+
+  .carousel-slide:hover {
+    z-index: 999;
+  }
+
+  .carousel-slide img {
+    border-radius: 8px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    transition: transform 0.8s ease;
+    max-width: 350px;                   /* size ng image */
+    margin: 0 auto;                     /* pang smooth hover zoom in */
+    max-height: 130px;                  /* ok na to size kapag zoomin */
+    display: block;
+    object-fit: cover;
+    padding-bottom: 0;
+  }
+
+  .carousel-slide img:hover {
+    box-shadow: 0 0 16px rgba(0,239,255,0.4);
+    z-index: 999;
+    position: relative;
+    margin: 0 auto;                     /* margin pag mag hover zoom */
+    transform: scale(2.2);              /* zoom in image pag hover */
+  }
+
+  .carousel-slide.focused {
+    transform: scale(1.5)  translate(-10%);
+    z-index: 999;
+    position: relative;
+  }
+
+  .slide-title {
+    font-family: 'CoffeeSoda', cursive;
+    color: #a96840;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .carousel-dots {           /* Dots */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: #0fa3a3;
+    box-shadow: 0 0 6px rgba(15, 163, 163, 0.4);
+  }
+
+  .design-title {
+    color: #0ef;
+    font-family: 'CoffeeSoda', cursive;
+    font-size: 2.5rem;
+    margin: 2px 0;
+    text-align: center;
+    display: block;
+    letter-spacing: 1.5px;
+    padding-bottom: 2px;
+  }
+
+  .custom-ordering-app img {
+    max-width: 300px;           /* size sa ordering app */
+    max-height: 140px;          /* ok na ito */
+  }
+
+  .carousel-slide:first-child {  /* first image ito */
+    margin-left: 4rem;
+  }
+
+  .carousel-slide:last-child {
+    margin-right: 0;
+  }
+
+  .carousel-dots:only-child {
+    display: none;
+  }
+
+  .section::after {
+    content: "";
+    display: block;
+    height: 60px;
+    margin-top: -80px;
+  }
+
+  #design-showcase {                  /* eto un size ng container sa ui design */
+    padding-bottom: 0;
+    height: 82vh;                    /* ikaw pala sakit sa ulo */
+    scroll-margin-top: 85px;
+  }
+
+   #contact {                          /* icon container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 8rem auto 4rem auto;        /* para magcenter ung contact container */
+    margin-bottom: 1rem; width: 77%;    /* para magcenter ung contact container */
+   }
+
+  #contact a {
+    display: block;
+    padding-bottom: 1rem;
+    margin: 30px 0;
+    scroll-margin-bottom: 120px;
+  }
+
+  #contact h2 {
+    font-family: 'CoffeeSoda', cursive;
+    letter-spacing: 2px;
+    margin-top: 1rem;
+    margin-bottom: 8rem;   /* to push down the icons */
+  }
+
+  .contact-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 10px;
+    text-align: center;
+    height: 750%;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+    color: #0ef;
+    text-align: center;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    width: 750%;
+    max-width: 750px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;                  /* Optional: keeps items uniform */
+
+    height: 120px;                 /* Adjust this to control spacing */
+    width: 250px;                  /* links name to move down */
+  }
+
+  .contact-links-grid {            /* grid ng icons */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;           /* or center for icons to be horizontally aligned */
+    gap: 3rem;
+    flex-wrap: wrap;
+    width: 750%;
+    max-width: 1000px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px #0ef);
+  }
+
+  .contact-item a {              /* container in contact icon */
+    color: #a96840;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .contact-item a:hover {
+    color: #0ef;
+    text-shadow: 0 0 6px #0ef, 0 0 12px #0ef;
+  }
+
+
+  .motivation-container {
+    max-width: 800px;
+    margin: 20 20;
+    padding: 2rem 1rem;
+    text-align: center;
+    display: block;
+  }
+
+   @font-face {
+    font-family: 'Playwrite';
+    src: url('PlaywriteAUVIC-Regular.ttf') format('truetype');
+    font-display: swap;
+  }
+
+  .motivation {
+    display: block;
+    max-width: 700px;
+    margin: 4rem auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 3rem;
+    color: rgb(49, 221, 233);
+
+    animation: quoteGlow 3s ease-in-out infinite;
+    padding: 5px;
+
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(8px);
+    transition: opacity 1.5s ease, transform 1.5s ease, filter 1.5s ease;
+    font-family: 'Playwrite', cursive;
+  }
+
+  #motivation {
+    padding-bottom: 10rem;         /* Creates space between quote and footer */
+    margin-top: 25rem;             /* Optional: separates it from the previous section */
+    min-height: 80vh;              /* or try 50vh depending on your layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Playwrite', cursive;
+  }
+
+  .motivation.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1.2);
+    filter: blur(0);
+  }
+
+  @keyframes quoteGlow {
+    0%, 100% {
+      text-shadow:
+        0 0 5px rgba(9, 227, 243, 0.6),
+        0 0 10px rgba(9, 227, 243, 0.6),
+    }
+    50% {
+      text-shadow:
+        0 0 10px rgb(10, 226, 241),
+        0 0 20px rgb(7, 114, 121)
+    }
+  }

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Manangcaya | Portfolio</title>
+  <link rel="stylesheet" href="index.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" href="favicon2.jpg" type="image/png">
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="the-advertising-background-249849.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+  <!-- HEADER -->
+    <div class="header-left">
+      <img src="Bae.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="header-right">
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+
+      <div class="dropdown">
+        <a href="#projects" class="dropdown-toggle">Projects ▾</a>
+        <div class="dropdown-menu">
+          <a href="#project1">Project 1</a>
+          <a href="#project2">Project 2</a>
+          <a href="#design-showcase">UI Graphic Design</a>
+        </div>
+      </div>
+
+      <a href="#contact">Contact</a>
+    </nav>
+
+  
+    <!-- Coffee Bean Icon -->
+      <div class="button-group">
+        <button class="menu-toggle bean-icon">
+          <img src="coffee-bean-solid-24.png" class="bean-icon open-icon">
+          <img src="cross.png" class="bean-icon close-icon" style="display:none;">
+        </button>
+
+          <button class="music-toggle" onclick="toggleMusic()">🎵</button>
+      </div>
+      </div>
+  </header>
+
+
+  <!-- MAIN CONTENT -->
+   <main>
+  <section id="home" class="hero">
+    <div class="home-container">
+        <div class="hero-text">
+          <h2>
+            Hi! <br> I'm Michael <br>Manangcaya
+          </h2>
+              <h3><span class="highlight">And I'm a</span> <br>
+                    <span class="typed-container">
+                    <span class="animated-text text"></span>
+                  </span>
+             </h3>
+          <a href="Michael_Resume.pdf" class="btn" download>Download CV</a>
+        </div>
+        
+        <div class="glow-wrapper">
+          <img src="vrprof.jpg" alt="Michael Manangcaya" class="profile-pic">
+       
+        </div>
+    </div>
+  </section>
+  
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section glass fade-in project-section">
+    <div class="about-vertical">
+     <div class="about-content">
+      <img src="McdoPP.jpg" alt="Michael Manangcaya" class="hero-profile">
+      <div class="about-text">
+        <h2>About Me</h2>
+            <p>Hello! I'm Michael Manangcaya, a goal-oriented Computer Science student with strong international experience in customer service, gained from working as a Head Barista in Saudi Arabia.
+              Proven ability to adapt to fast-paced environments, manage tasks efficiently, and collaborate effectively in team settings. 
+              with a focus on quality service, training, and delivery management. Trained and onboarded new baristas, ensuring they mastered beverage preparation, customer service, and store operations.
+              Managed third- party delivery services, maintaining high standards, accuracy and timely service known for reliability, attention to detail, and a commitment to both customer and team success.
+              <br>
+              <br>
+              Currently enhancing technical skills in software development, with a focus on learning programming languages and software engineering principles.
+              Seeking an opportunity as a Junior Software Engineer to apply my problem-solving skills, develop technical expertise, and contribute to innovative projects.
+            </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills" class="section glass fade-in">
+  <h2 class="skills-title">My Skills</h2>
+  <div class="skills-wrapper">
+    <!-- Hard Skills -->
+     <div class="skills-set">
+   <div class="skills-column">
+  <h1 class="skills-heading tech">Technical Skills</h1>
+
+  <div class="skill-bar">
+    <p>HTML</p>
+    <div class="bar"><div class="fill" style="width: 40%"></div></div>
+  </div>
+
+  <div class="skill-bar">
+    <p>CSS</p>
+    <div class="bar"><div class="fill" style="width: 55%"></div></div>
+  </div>
+
+  <div class="skill-bar">
+    <p>Python</p>
+    <div class="bar"><div class="fill" style="width: 10%"></div></div>
+  </div>
+
+  <div class="skill-bar">
+    <p>Embedded</p>
+    <div class="bar"><div class="fill" style="width: 43%"></div></div>
+  </div>
+
+  <div class="skill-bar">
+    <p>IoT</p>
+    <div class="bar"><div class="fill" style="width: 35%"></div></div>
+  </div>
+</div>
+</div>
+
+
+    <!-- Soft Skills -->
+<div class="skills-set">
+  <div class="skills-column">
+    <h1 class="skills-heading soft">Soft Skills</h1>
+      <canvas id="softSkillsChart" width="500" height="320"></canvas>
+  </div>
+</div>
+</section>
+
+
+  <!-- PROJECTS -->
+  <section id="project1" class="section glass fade-in project-section">
+    <div class="project-container">
+       <div class="project-text">
+        <h1>Project 1 :</h1>
+           <h2>Smart Water Level Indicator Using Arduino</h2>
+          <p>An embedded system of Monitoring water levels in real time using Arduino, Water sensor, and buzzer alerts.</p>
+        <strong>Technologies Used:</strong>
+          <ul>
+            <li>Arduino UNO</li>
+            <li>Water Sensor</li>
+            <li>LEDs & Buzzer</li>
+            <li>LCD & I2C module</li>
+            <li>C++ (Arduino IDE)</li>
+          </ul>
+    <p><a href="https://github.com/BaeristaVR/Water-Level-Monitor" target="_blank">View Source Code</a></p>
+    </div>
+    <div class="project-image glass">
+      <img src="CircuitDiagram.png" alt="Smart Water Level Indicator" />
+    </div>
+  </div>
+  </section>
+
+  <section id="project2" class="section glass fade-in project-section">
+    <div class="project-container">
+       <div class="project-text">
+        <h1>Project 2 :</h1>
+          <h2>RFID-Based Entrance Monitoring System for Subdivision Security</h2>
+           <p> An IoT system, Developing an RFID-based secure entrance system with real-time vehicle monitoring with data encryption.</p>
+        <strong>Technologies Used:</strong>
+        <ul>
+          <li>NodeMCU esp8266</li>
+          <li>RFID Reader (RC522)</li>
+          <li>Google Sheets</li>
+          <li>I2C Integration</li>
+          <li>IoT Integration</li>
+          <li>Data Encryption</li>
+        </ul>
+    <p><a href="https://github.com/BaeristaVR/RFID-with-Encryption" target="_blank">View Source Code</a></p>
+      </div>
+    <div class="project-image glass">
+      <img src="rfidDiagram.jfif" alt="RFID-with-Encryption" />
+    </div>
+  </div>
+  </section>
+
+
+  <!-- <div class="container"></div> -->
+  <!-- UI DESIGN -->
+  <section id="design-showcase" class="section glass fade-in">
+    <div class="wrapper">
+      <div class="carousel-container">
+      <h2 class="design-title">UI & Graphic Design</h2>
+      <div class="carousel-container">
+
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="POS UI Design.png" alt="POS UI DESIGN.png" />
+            <p class="slide-title">POS UI Design</p>
+          </div>
+        
+
+          <div class="carousel-slide">
+            <img src="POSDASHBOARD.png" alt="POS DASHBOARD.png" />
+            <p class="slide-title">POS Dashboard</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="POSLists.png" alt="POS List" />
+            <p class="slide-title">POS List</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="Web UI.jfif" alt="WEB UI" />
+            <p class="slide-title">Web UI</p>
+          </div>
+
+          <div class="carousel-slide custom-ordering-app">
+            <img src="Ordering App.png" alt="Ordering App.png" />
+            <p class="slide-title">Ordering App</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="hiv ui.jfif" alt="Health track UI" />
+            <p class="slide-title">Health track UI</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="SDLCSpiral.png" alt="SDLC spiral" />
+            <p class="slide-title">SDLC spiral</p>
+          </div>
+        </div>
+
+        <div class="carousel-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      </div>
+      </div>
+</section>
+
+
+<section id="contact" class="section glass fade-in">
+  <h2 class="contact-title">Contact</h2>
+  <div class="contact-links-grid">
+
+    <div class="contact-item">
+      <img src="gmail-logo.png" alt="Email Icon" class="contact-icon" />
+      <a href="https://mail.google.com/mail/?view=cm&to=manangcaya.michael@gmail.com" target="_blank">
+          manangcaya.michael@gmail.com
+      </a>
+    </div>
+
+    <div class="contact-item">
+      <img src="linkedin (1).png" alt="LinkedIn Icon" class="contact-icon" />
+      <a href="https://www.linkedin.com/in/michael-manangcaya-143606260/" target="_blank">in/manangcaya-michael</a>
+    </div>
+
+    <div class="contact-item">
+      <img src="github.png" alt="GitHub Icon" class="contact-icon" />
+      <a href="https://github.com/BaeristaVR" target="_blank">BaeristaVR</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <section id="motivation" class="fade-in">
+      <blockquote class="motivation">
+        "Pulling the perfect espresso and writing clean code both demand patience, precision, and passion."
+        </blockquote>
+    </section>
+
+        <br><br><br><br>
+    <section id="motivation" class="fade-in">
+        <blockquote class="motivation">
+        "A good brew and good software never happen by accident, both are engineered."
+        </blockquote>
+    </section>
+
+
+    </main>
+  <footer>
+    <p> © 2025 BaeristaVR. All rights reserved.</p>
+  </footer>
+</div>
+
+
+<canvas id="myCanvas" width="500" height="500"></canvas>
+<canvas id="softSkillsChart"></canvas>
+
+
+<canvas id="beansCanvas" style="position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none;"></canvas>
+
+ <script src="
+    https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js
+    "></script>
+
+ <script src="index.js"></script>
+</body>
+</html>
