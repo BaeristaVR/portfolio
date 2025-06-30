@@ -20,7 +20,6 @@
     user-select: text !important;
   }
 
-
   body {
     margin: 0;
     background-color: #030e16;
@@ -1200,7 +1199,6 @@
     text-shadow: 0 0 6px #0ef, 0 0 12px #0ef;
   }
 
-
   .motivation-container {
     max-width: 800px;
     margin: 20 20;
@@ -1263,3 +1261,5 @@
         0 0 20px rgb(7, 114, 121)
     }
   }
+
+
